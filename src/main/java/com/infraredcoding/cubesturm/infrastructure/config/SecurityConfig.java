@@ -1,7 +1,7 @@
 package com.infraredcoding.cubesturm.infrastructure.config;
 
 import com.infraredcoding.cubesturm.domain.filters.JwtFilter;
-import com.infraredcoding.cubesturm.services.SturmUserDetailsService;
+import com.infraredcoding.cubesturm.infrastructure.services.SturmUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

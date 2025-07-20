@@ -1,4 +1,4 @@
-package com.infraredcoding.cubesturm.services;
+package com.infraredcoding.cubesturm.infrastructure.services;
 
 import com.infraredcoding.cubesturm.domain.models.core.SturmUser;
 import com.infraredcoding.cubesturm.repositories.UserRepository;

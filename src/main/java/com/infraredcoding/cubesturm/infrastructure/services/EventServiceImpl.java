@@ -35,7 +35,10 @@ public class EventServiceImpl implements EventService {
     public boolean updateEvent(Event event) {
         Optional<Event> _event = eventRepository.findById(event.getId());
         if (_event.isPresent()) {
-            eventRepository.save(event);
+            Event e = _event.get();
+            e.setMain(event.getMain());
+            e.setGoal(event.getGoal());
+            eventRepository.save(e);
             return true;
         }
         return false;

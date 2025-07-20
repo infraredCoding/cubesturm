@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@cubing/icons": "^3.0.4",
+    "@remixicon/vue": "^4.6.0",
     "@tailwindcss/vite": "^4.1.11",
     "axios": "^1.10.0",
     "daisyui": "^5.0.43",

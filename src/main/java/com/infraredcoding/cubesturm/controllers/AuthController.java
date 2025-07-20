@@ -6,7 +6,7 @@ import com.infraredcoding.cubesturm.domain.dto.auth.RegisterRequestDTO;
 import com.infraredcoding.cubesturm.domain.models.core.SturmUser;
 import com.infraredcoding.cubesturm.infrastructure.utils.JwtUtils;
 import com.infraredcoding.cubesturm.repositories.UserRepository;
-import com.infraredcoding.cubesturm.services.SturmUserDetailsService;
+import com.infraredcoding.cubesturm.infrastructure.services.SturmUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

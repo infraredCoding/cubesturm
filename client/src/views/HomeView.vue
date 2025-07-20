@@ -63,8 +63,7 @@ const addPuzzle = async () => {
       <PuzzleCard
         v-for="p in puzzles"
         :name="puzzleTypes[p.puzzle]?.val || '3x3'"
-        :main="p.main"
-        :goal="p.goal || 'N/A'"
+        :puzzle="p"
         :icon="puzzleTypes[p.puzzle]?.icon"
         :key="p.id"
       />

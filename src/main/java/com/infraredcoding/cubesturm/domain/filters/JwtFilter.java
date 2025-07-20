@@ -1,6 +1,6 @@
 package com.infraredcoding.cubesturm.domain.filters;
 
-import com.infraredcoding.cubesturm.services.SturmUserDetailsService;
+import com.infraredcoding.cubesturm.infrastructure.services.SturmUserDetailsService;
 import com.infraredcoding.cubesturm.infrastructure.utils.JwtUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

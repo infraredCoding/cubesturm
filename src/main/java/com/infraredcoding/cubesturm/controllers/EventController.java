@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -38,6 +39,24 @@ public class EventController {
     @PostMapping
     public ResponseEntity<Event> createEvent(@AuthenticationPrincipal UserDetails user, @RequestBody Event event) {
         return new ResponseEntity<>(eventService.createEvent(event, user.getUsername()), HttpStatus.CREATED);
+    }
+
+    @PatchMapping("{id}")
+    public ResponseEntity<Object> editEvent(@RequestBody Event event, @PathVariable("id") Long id) {
+        boolean success = eventService.updateEvent(event);
+        if (success) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Object> deleteEvent(@PathVariable("id") Long id) {
+        boolean success = eventService.deleteEvent(id);
+        if (success) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
 }
