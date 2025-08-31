@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TrainingView from '@/views/training/TrainingView.vue'
+import SlowSolvesView from '@/views/training/SlowSolvesView.vue'
+import AlgTrainingListView from '@/views/training/AlgTrainingListView.vue'
+import AlgTrainingView from '@/views/training/AlgTrainingView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -15,6 +18,24 @@ const router = createRouter({
       path: '/training',
       name: 'training',
       component: TrainingView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/training/alg-trainer',
+      name: 'alg-trainer',
+      component: AlgTrainingListView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/training/alg-trainer/:algSetId',
+      name: 'algset-trainer',
+      component: AlgTrainingView,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/slow-solves',
+      name: 'slow-solves',
+      component: SlowSolvesView,
       meta: { requiresAuth: true },
     },
     // auth stuff

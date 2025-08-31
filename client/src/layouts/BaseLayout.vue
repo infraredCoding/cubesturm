@@ -28,8 +28,14 @@ const props = defineProps(['isSidebarOpen'])
     <RouterLink
       to="/training"
       class="text-md text-center rounded-2xl px-5 py-3 mx-5"
-      :class="{ 'bg-accent text-white': route.path === '/training' }"
+      :class="{ 'bg-accent text-white': route.path.includes('/training') }"
       >Training</RouterLink
+    >
+    <RouterLink
+      to="/slow-solves"
+      class="text-md text-center rounded-2xl px-5 py-3 mx-5"
+      :class="{ 'bg-accent text-white': route.path === '/slow-solves' }"
+      >Slow Solves</RouterLink
     >
 
     <button

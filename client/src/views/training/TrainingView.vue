@@ -1,7 +1,7 @@
 <script setup>
 import api from '@/axios'
 import router from '@/router'
-import { RiAddLine, RiDeleteBinLine, RiEdit2Line } from '@remixicon/vue'
+import { RiAddLine, RiDeleteBinLine, RiEdit2Line, RiArrowRightCircleLine } from '@remixicon/vue'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 
@@ -109,6 +109,12 @@ const openDelModal = (slot) => {
       <button class="btn btn-success" onclick="add_slot_modal.showModal()">
         <RiAddLine /> Add Slot
       </button>
+    </div>
+
+    <div class="flex">
+      <RouterLink to="/training/alg-trainer" class="btn btn-primary mb-5"
+        >Alg Trainer <RiArrowRightCircleLine
+      /></RouterLink>
     </div>
 
     <div class="grid grid-cols-7 gap-3 w-full items-start">
