@@ -1,0 +1,31 @@
+package com.infraredcoding.cubesturm.domain.models.training;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.infraredcoding.cubesturm.domain.models.core.SturmUser;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
+
+@Entity
+@Table
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Video {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String title;
+    private String fileName;
+    private String filePath;
+    private Long size;
+    private LocalDateTime creationDate;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
+    private SturmUser uploadedBy;
+}

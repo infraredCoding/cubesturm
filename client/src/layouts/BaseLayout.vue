@@ -38,6 +38,13 @@ const props = defineProps(['isSidebarOpen'])
       >Slow Solves</RouterLink
     >
 
+    <RouterLink
+      to="/footage"
+      class="text-md text-center rounded-2xl px-5 py-3 mx-5"
+      :class="{ 'bg-accent text-white': route.path === '/footage' }"
+      >Analyze Footage</RouterLink
+    >
+
     <button
       class="text-md text-center bg-slate-600/50 text-zinc-50 rounded-2xl px-5 py-3 mx-5 cursor-pointer"
       @click.prevent="logout()"
