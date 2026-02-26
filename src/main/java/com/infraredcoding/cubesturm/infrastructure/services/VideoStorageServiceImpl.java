@@ -11,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -37,4 +38,15 @@ public class VideoStorageServiceImpl implements VideoStorageService {
     public Video saveVideo(Video video) {
         return videoRepository.save(video);
     }
+
+    @Override
+    public List<Video> getAllVideos(String username) {
+        return videoRepository.findByUsername(username);
+    }
+
+    @Override
+    public Video getVideoById(Long id) {
+        return videoRepository.findById(id).orElse(null);
+    }
+
 }

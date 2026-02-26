@@ -5,6 +5,7 @@ import SlowSolvesView from '@/views/training/SlowSolvesView.vue'
 import AlgTrainingListView from '@/views/training/AlgTrainingListView.vue'
 import AlgTrainingView from '@/views/training/AlgTrainingView.vue'
 import VideoView from '@/views/training/VideoView.vue'
+import MyVideosView from '@/views/training/MyVideosView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -40,10 +41,16 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
-      path: '/footage',
+      path: '/footage/:videoId',
       name: 'footage',
       component: VideoView,
       // meta: { requiresAuth: true },
+    },
+    {
+      path: '/all-footages',
+      name: 'footages',
+      component: MyVideosView,
+      meta: { requiresAuth: true },
     },
     // auth stuff
     {

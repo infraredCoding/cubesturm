@@ -2,6 +2,7 @@ package com.infraredcoding.cubesturm.domain.models.training;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.infraredcoding.cubesturm.domain.models.core.SturmUser;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,6 +22,7 @@ public class Video {
     private String title;
     private String fileName;
     private String filePath;
+    private Integer duration;
     private Long size;
     private LocalDateTime creationDate;
 

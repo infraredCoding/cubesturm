@@ -4,6 +4,7 @@ import videojs from 'video.js'
 import 'video.js/dist/video-js.css'
 
 import 'videojs-markers-plugin'
+import api from '@/axios'
 
 const videoPlayer = ref(null)
 const video = ref(null)
@@ -15,7 +16,6 @@ const noteWriter = ref(null)
 const handleFileUpload = (e) => {
   const file = e.target.files[0]
   if (file && file.type.startsWith('video/')) {
-    // Create a local URL for the file
     video.value = URL.createObjectURL(file)
     fileObject.value = file
 
@@ -29,6 +29,13 @@ const handleFileUpload = (e) => {
   }
 }
 
+const loadVideoFromServer = async (videoId) => {
+  player.value.src({
+    type: 'video/mp4',
+    src: `http://127.0.0.1:8080/api/v1/videos/${videoId}/stream`,
+  })
+}
+
 onMounted(() => {
   if (videoPlayer.value) {
     player.value = videojs(videoPlayer.value, {
@@ -36,14 +43,18 @@ onMounted(() => {
       autoplay: false,
       preload: 'auto',
       fluid: true,
+      // aspectRatio: '16:9',
     })
   }
+
+  loadVideoFromServer(2)
 })
 
 const addNote = () => {
-  console.log(document.querySelector('#player').currentTime)
+  console.log(player.value.currentTime())
+
   notes.value.push({
-    ts: document.querySelector('#player').currentTime,
+    ts: player.value.currentTime(),
     note: noteWriter.value,
   })
 }
@@ -54,7 +65,7 @@ const parsedTime = (seconds) => {
 }
 
 const goto = (seconds) => {
-  document.querySelector('#player').currentTime = seconds
+  player.value.currentTime(seconds)
 }
 onBeforeUnmount(() => {
   if (player.value) {
@@ -66,32 +77,15 @@ onBeforeUnmount(() => {
 <template>
   <section class="w-full px-10 mx-auto min-h-screen">
     <div class="py-10 flex justify-between">
-      <h1 class="text-3xl">Analyze Footage</h1>
+      <h1 class="text-3xl">Analyze Footage :</h1>
     </div>
 
-    <section class="flex">
-      <div>
-        <input
-          type="file"
-          class="file-input file-input-lg"
-          @change="handleFileUpload"
-          accept="video/*"
-        />
-      </div>
-    </section>
-
     <section class="flex gap-10 justify-between w-full">
-      <video
-        id="player"
-        ref="videoPlayer"
-        controls
-        v-if="video"
-        :src="video"
-        class="video-js self-start"
-        style="width: 50%; height: auto"
-      >
-        Your browser does not support the video tag.
-      </video>
+      <div class="w-full">
+        <video crossorigin="anonymous" id="cvidplayer" ref="videoPlayer" controls class="video-js">
+          Your browser does not support the video tag.
+        </video>
+      </div>
       <div class="flex flex-col w-full">
         <div>
           <textarea
@@ -99,7 +93,7 @@ onBeforeUnmount(() => {
             placeholder="Enter Note here"
             v-model="noteWriter"
           ></textarea>
-          <button class="btn btn-accent" @click="addNote" :disabled="!video">Add Note</button>
+          <button class="btn btn-accent" @click="addNote" :disabled="!noteWriter">Add Note</button>
         </div>
 
         <div class="mt-5 flex flex-col gap-4 overflow-y-scroll h-1/2">

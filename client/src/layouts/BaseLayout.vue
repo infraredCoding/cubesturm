@@ -39,9 +39,9 @@ const props = defineProps(['isSidebarOpen'])
     >
 
     <RouterLink
-      to="/footage"
+      to="/all-footages"
       class="text-md text-center rounded-2xl px-5 py-3 mx-5"
-      :class="{ 'bg-accent text-white': route.path === '/footage' }"
+      :class="{ 'bg-accent text-white': route.path === '/all-footages' }"
       >Analyze Footage</RouterLink
     >
 
