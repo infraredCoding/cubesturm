@@ -43,6 +43,7 @@ public class VideoController {
             String filePath = videoStorageService.savefile(file);
 
             videoUtils.processVideoToFastStart(filePath);
+            videoUtils.generateThumbnail(filePath, filePath.replace(".mp4", ".jpg").replace("videos", "thumbnails"));
 
             Video video = new Video();
             video.setTitle(title);

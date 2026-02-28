@@ -30,4 +30,8 @@ public class Video {
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnore
     private SturmUser uploadedBy;
+
+    public String getThumbnail(){
+        return this.getFilePath().replace(".mp4", ".jpg").replace("videos", "thumbnails");
+    }
 }

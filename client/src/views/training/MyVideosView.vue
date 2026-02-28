@@ -10,7 +10,10 @@ const videos = ref([])
 onMounted(async () => {
   await api
     .get('videos')
-    .then((res) => (videos.value = res.data))
+    .then((res) => {
+      videos.value = res.data
+      console.log(res.data)
+    })
     .catch((err) => console.log(err))
 })
 
@@ -30,14 +33,20 @@ const parseSize = (bytes) => {
       <h1 class="text-3xl">Analyze Footage</h1>
     </div>
 
-    <section class="grid grid-cols-4 w-full gap-5">
+    <section class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full gap-5">
       <div
         class="card bg-neutral w-full hover:translate-x-0 cursor-pointer"
-        @click="$router.push({ name: 'footage', params: { videoId: 1 } })"
+        @click="$router.push({ name: 'footage', params: { videoId: v.id } })"
         v-for="v in videos"
         :key="v.id"
       >
         <div class="card-body">
+          <div class="w-full relative">
+            <img :src="`http://localhost:8080/${v.thumbnail}`" class="w-full" />
+            <span class="absolute bg-slate-950 text-amber-50 bottom-0 right-0 px-1">{{
+              parsedTime(v.duration)
+            }}</span>
+          </div>
           <h1 class="text-2xl">{{ v.title }}</h1>
           <h6 class="text-md">Uploaded at: {{ new Date(v.creationDate).toLocaleString() }}</h6>
           <h6 class="text-md">Size: {{ parseSize(v.size) }} MB</h6>

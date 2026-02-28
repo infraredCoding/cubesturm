@@ -45,4 +45,27 @@ public class VideoUtils {
 
         return inputPath;
     }
+
+    public void generateThumbnail(String inputPath, String outputPath) throws IOException, InterruptedException {
+        Path uploadPath = Paths.get("uploads/thumbnails/");
+        if (!Files.exists(uploadPath)) {
+            Files.createDirectories(uploadPath);
+        }
+
+        ProcessBuilder processBuilder = new ProcessBuilder(
+            "ffmpeg",
+            "-i", inputPath,
+            "-ss", "00:00:02.000",
+            "-vframes", "1",
+            outputPath
+        );
+
+        processBuilder.redirectErrorStream(true);
+        Process process = processBuilder.start();
+        int exitCode = process.waitFor();
+
+        if (exitCode != 0) {
+            throw new RuntimeException("Failed to generate thumbnail");
+        }
+    }
 }
